@@ -1,4 +1,4 @@
-import { clx } from "@medusajs/ui"
+import { cn } from "@lib/util/cn"
 
 import { getPercentageDiff } from "@lib/util/get-precentage-diff"
 import { getPricesForVariant } from "@lib/util/get-product-price"
@@ -24,16 +24,16 @@ const LineItemPrice = ({ item, style = "default" }: LineItemPriceProps) => {
   const hasReducedPrice = currentPrice < originalPrice
 
   return (
-    <div className="flex flex-col gap-x-2 text-ui-fg-subtle items-end">
-      <div className="text-left">
+    <div className="flex flex-col gap-y-1 items-end">
+      <div className="text-right">
         {hasReducedPrice && (
-          <>
-            <p>
+          <div className="flex flex-col items-end gap-y-1 mb-1">
+            <p className="text-xs text-muted-foreground">
               {style === "default" && (
-                <span className="text-ui-fg-subtle">Original: </span>
+                <span>Original: </span>
               )}
               <span
-                className="line-through text-ui-fg-muted"
+                className="line-through"
                 data-testid="product-original-price"
               >
                 {convertToLocale({
@@ -43,15 +43,15 @@ const LineItemPrice = ({ item, style = "default" }: LineItemPriceProps) => {
               </span>
             </p>
             {style === "default" && (
-              <span className="text-ui-fg-interactive">
+              <span className="text-primary text-xs font-semibold">
                 -{getPercentageDiff(originalPrice, currentPrice || 0)}%
               </span>
             )}
-          </>
+          </div>
         )}
         <span
-          className={clx("text-base-regular", {
-            "text-ui-fg-interactive": hasReducedPrice,
+          className={cn("text-base font-semibold text-foreground", {
+            "text-primary": hasReducedPrice,
           })}
           data-testid="product-price"
         >

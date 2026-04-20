@@ -1,6 +1,7 @@
-import { Text, clx } from "@medusajs/ui"
+import { cn } from "@lib/util/cn"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import React from "react"
+import { Plus, Minus } from "lucide-react"
 
 type AccordionItemProps = AccordionPrimitive.AccordionItemProps & {
   title: string
@@ -27,7 +28,6 @@ const Accordion: React.FC<AccordionProps> & {
   Item: React.FC<AccordionItemProps>
 } = ({ children, ...props }) => {
   return (
-    /* x@ts-expect-error */
     <AccordionPrimitive.Root {...props}>{children}</AccordionPrimitive.Root>
   )
 }
@@ -45,44 +45,39 @@ const Item: React.FC<AccordionItemProps> = ({
   ...props
 }) => {
   return (
-    /* x@ts-expect-error */
     <AccordionPrimitive.Item
       {...props}
-      className={clx(
-        "border-grey-20 group border-t last:mb-0 last:border-b",
-        "py-3",
+      className={cn(
+        "border-border group border-t last:mb-0 last:border-b",
+        "py-4",
         className
       )}
     >
-      {/* x@ts-expect-error */}
-      <AccordionPrimitive.Header className="px-1">
-        <div className="flex flex-col">
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Text className="text-ui-fg-subtle text-sm">{title}</Text>
-            </div>
-            {/* x@ts-expect-error */}
-            <AccordionPrimitive.Trigger>
-              {customTrigger || <MorphingTrigger />}
-            </AccordionPrimitive.Trigger>
+      <AccordionPrimitive.Header className="flex">
+        <AccordionPrimitive.Trigger className="flex flex-1 items-center justify-between py-2 font-medium transition-all hover:underline [&[data-state=open]>div>svg]:rotate-180">
+          <div className="flex flex-col items-start text-left">
+            <span className="text-sm font-semibold text-foreground">{title}</span>
+            {subtitle && (
+              <span className="text-xs text-muted-foreground mt-1">
+                {subtitle}
+              </span>
+            )}
           </div>
-          {subtitle && (
-            <Text as="span" size="small" className="mt-1">
-              {subtitle}
-            </Text>
+          {customTrigger || (
+            <div className="h-5 w-5 shrink-0 transition-transform duration-200">
+               <Plus className="h-4 w-4 text-muted-foreground group-data-[state=open]:hidden" />
+               <Minus className="h-4 w-4 text-muted-foreground hidden group-data-[state=open]:block" />
+            </div>
           )}
-        </div>
+        </AccordionPrimitive.Trigger>
       </AccordionPrimitive.Header>
-      {/* x@ts-expect-error */}
       <AccordionPrimitive.Content
         forceMount={forceMountContent}
-        className={clx(
-          "radix-state-closed:animate-accordion-close radix-state-open:animate-accordion-open radix-state-closed:pointer-events-none px-1"
-        )}
+        className="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
       >
-        <div className="inter-base-regular group-radix-state-closed:animate-accordion-close">
-          {description && <Text>{description}</Text>}
-          <div className="w-full">{children}</div>
+        <div className="pb-4 pt-2">
+          {description && <p className="text-muted-foreground mb-4">{description}</p>}
+          <div className="w-full text-foreground">{children}</div>
         </div>
       </AccordionPrimitive.Content>
     </AccordionPrimitive.Item>
@@ -90,16 +85,5 @@ const Item: React.FC<AccordionItemProps> = ({
 }
 
 Accordion.Item = Item
-
-const MorphingTrigger = () => {
-  return (
-    <div className="text-grey-90 hover:bg-grey-5 active:bg-grey-5 active:text-violet-60 focus:border-violet-60 disabled:text-grey-30 bg-transparent disabled:bg-transparent rounded-rounded group relative p-[6px]">
-      <div className="h-5 w-5">
-        <span className="bg-grey-50 rounded-circle group-radix-state-open:rotate-90 absolute inset-y-[31.75%] left-[48%] right-1/2 w-[1.5px] duration-300" />
-        <span className="bg-grey-50 rounded-circle group-radix-state-open:rotate-90 group-radix-state-open:left-1/2 group-radix-state-open:right-1/2 absolute inset-x-[31.75%] top-[48%] bottom-1/2 h-[1.5px] duration-300" />
-      </div>
-    </div>
-  )
-}
 
 export default Accordion

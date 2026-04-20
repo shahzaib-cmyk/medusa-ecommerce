@@ -1,13 +1,9 @@
 "use client"
 
-import { clx } from "@medusajs/ui"
-import { ArrowRightOnRectangle } from "@medusajs/icons"
+import { LogOut, User, MapPin, Package, ChevronRight, ChevronLeft } from "lucide-react"
 import { useParams, usePathname } from "next/navigation"
+import { cn } from "@lib/util/cn"
 
-import ChevronDown from "@modules/common/icons/chevron-down"
-import User from "@modules/common/icons/user"
-import MapPin from "@modules/common/icons/map-pin"
-import Package from "@modules/common/icons/package"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 import { signout } from "@lib/data/customer"
@@ -30,76 +26,70 @@ const AccountNav = ({
         {route !== `/${countryCode}/account` ? (
           <LocalizedClientLink
             href="/account"
-            className="flex items-center gap-x-2 text-small-regular py-2"
+            className="flex items-center gap-x-2 text-sm py-2 text-muted-foreground hover:text-foreground transition-colors"
             data-testid="account-main-link"
           >
-            <>
-              <ChevronDown className="transform rotate-90" />
-              <span>Account</span>
-            </>
+            <ChevronLeft className="h-4 w-4" />
+            <span>Account</span>
           </LocalizedClientLink>
         ) : (
           <>
-            <div className="text-xl-semi mb-4 px-8">
+            <div className="text-2xl font-semibold mb-4 px-8 text-foreground">
               Hello {customer?.first_name}
             </div>
-            <div className="text-base-regular">
+            <div className="text-base">
               <ul>
                 <li>
                   <LocalizedClientLink
                     href="/account/profile"
-                    className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                    className="flex items-center justify-between py-4 border-b border-border px-8 hover:bg-accent transition-all"
                     data-testid="profile-link"
                   >
-                    <>
-                      <div className="flex items-center gap-x-2">
-                        <User size={20} />
-                        <span>Profile</span>
-                      </div>
-                      <ChevronDown className="transform -rotate-90" />
-                    </>
+                    <div className="flex items-center gap-x-2 text-foreground">
+                      <User className="h-5 w-5" />
+                      <span>Profile</span>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </LocalizedClientLink>
                 </li>
                 <li>
                   <LocalizedClientLink
                     href="/account/addresses"
-                    className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                    className="flex items-center justify-between py-4 border-b border-border px-8 hover:bg-accent transition-all"
                     data-testid="addresses-link"
                   >
-                    <>
-                      <div className="flex items-center gap-x-2">
-                        <MapPin size={20} />
-                        <span>Addresses</span>
-                      </div>
-                      <ChevronDown className="transform -rotate-90" />
-                    </>
+                    <div className="flex items-center gap-x-2 text-foreground">
+                      <MapPin className="h-5 w-5" />
+                      <span>Addresses</span>
+                    </div>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </LocalizedClientLink>
                 </li>
                 <li>
                   <LocalizedClientLink
                     href="/account/orders"
-                    className="flex items-center justify-between py-4 border-b border-gray-200 px-8"
+                    className="flex items-center justify-between py-4 border-b border-border px-8 hover:bg-accent transition-all"
                     data-testid="orders-link"
                   >
-                    <div className="flex items-center gap-x-2">
-                      <Package size={20} />
+                    <div className="flex items-center gap-x-2 text-foreground">
+                      <Package className="h-5 w-5" />
                       <span>Orders</span>
                     </div>
-                    <ChevronDown className="transform -rotate-90" />
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </LocalizedClientLink>
                 </li>
                 <li>
                   <button
                     type="button"
-                    className="flex items-center justify-between py-4 border-b border-gray-200 px-8 w-full"
+                    className="flex items-center justify-between py-4 border-b border-border px-8 w-full hover:bg-accent transition-all"
                     onClick={handleLogout}
                     data-testid="logout-button"
                   >
-                    <div className="flex items-center gap-x-2">
-                      <ArrowRightOnRectangle />
+                    <div className="flex items-center gap-x-2 text-foreground">
+                      <LogOut className="h-5 w-5" />
                       <span>Log out</span>
                     </div>
-                    <ChevronDown className="transform -rotate-90" />
+                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
                   </button>
                 </li>
               </ul>
@@ -110,9 +100,9 @@ const AccountNav = ({
       <div className="hidden small:block" data-testid="account-nav">
         <div>
           <div className="pb-4">
-            <h3 className="text-base-semi">Account</h3>
+            <h3 className="text-base font-semibold text-foreground">Account</h3>
           </div>
-          <div className="text-base-regular">
+          <div className="text-base">
             <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
               <li>
                 <AccountNavLink
@@ -150,12 +140,14 @@ const AccountNav = ({
                   Orders
                 </AccountNavLink>
               </li>
-              <li className="text-grey-700">
+              <li className="text-muted-foreground hover:text-foreground">
                 <button
                   type="button"
                   onClick={handleLogout}
                   data-testid="logout-button"
+                  className="flex items-center gap-x-2 transition-colors"
                 >
+                  <LogOut className="h-4 w-4" />
                   Log out
                 </button>
               </li>
@@ -186,8 +178,8 @@ const AccountNavLink = ({
   return (
     <LocalizedClientLink
       href={href}
-      className={clx("text-ui-fg-subtle hover:text-ui-fg-base", {
-        "text-ui-fg-base font-semibold": active,
+      className={cn("text-muted-foreground hover:text-foreground transition-colors", {
+        "text-foreground font-semibold": active,
       })}
       data-testid={dataTestId}
     >

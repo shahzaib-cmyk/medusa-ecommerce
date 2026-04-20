@@ -1,4 +1,4 @@
-import { Button } from "@medusajs/ui"
+import { Button } from "@lib/components/ui/button"
 import { useMemo } from "react"
 
 import Thumbnail from "@modules/products/components/thumbnail"
@@ -24,11 +24,11 @@ const OrderCard = ({ order }: OrderCardProps) => {
   }, [order])
 
   return (
-    <div className="bg-white flex flex-col" data-testid="order-card">
-      <div className="uppercase text-large-semi mb-1">
+    <div className="bg-background flex flex-col" data-testid="order-card">
+      <div className="uppercase text-lg font-semibold mb-1 text-foreground">
         #<span data-testid="order-display-id">{order.display_id}</span>
       </div>
-      <div className="flex items-center divide-x divide-gray-200 text-small-regular text-ui-fg-base">
+      <div className="flex items-center divide-x divide-border text-sm text-muted-foreground">
         <span className="pr-2" data-testid="order-created-at">
           {new Date(order.created_at).toDateString()}
         </span>
@@ -51,31 +51,31 @@ const OrderCard = ({ order }: OrderCardProps) => {
               data-testid="order-item"
             >
               <Thumbnail thumbnail={i.thumbnail} images={[]} size="full" />
-              <div className="flex items-center text-small-regular text-ui-fg-base">
+              <div className="flex items-center text-sm text-foreground">
                 <span
-                  className="text-ui-fg-base font-semibold"
+                  className="font-semibold"
                   data-testid="item-title"
                 >
                   {i.title}
                 </span>
-                <span className="ml-2">x</span>
-                <span data-testid="item-quantity">{i.quantity}</span>
+                <span className="ml-2 text-muted-foreground font-normal">x</span>
+                <span className="ml-1 text-muted-foreground font-normal" data-testid="item-quantity">{i.quantity}</span>
               </div>
             </div>
           )
         })}
         {numberOfProducts > 4 && (
-          <div className="w-full h-full flex flex-col items-center justify-center">
-            <span className="text-small-regular text-ui-fg-base">
+          <div className="w-full h-full flex flex-col items-center justify-center border border-dashed border-border rounded-lg aspect-[11/14]">
+            <span className="text-sm font-semibold text-foreground">
               + {numberOfLines - 4}
             </span>
-            <span className="text-small-regular text-ui-fg-base">more</span>
+            <span className="text-xs text-muted-foreground">more</span>
           </div>
         )}
       </div>
       <div className="flex justify-end">
         <LocalizedClientLink href={`/account/orders/details/${order.id}`}>
-          <Button data-testid="order-details-link" variant="secondary">
+          <Button data-testid="order-details-link" variant="outline" size="sm">
             See details
           </Button>
         </LocalizedClientLink>

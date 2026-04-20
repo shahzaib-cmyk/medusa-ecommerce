@@ -1,12 +1,12 @@
 "use client"
 
-import { Button } from "@medusajs/ui"
+import { Button } from "@lib/components/ui/button"
 import { OnApproveActions, OnApproveData } from "@paypal/paypal-js"
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import React, { useState } from "react"
 import ErrorMessage from "../error-message"
-import Spinner from "@modules/common/icons/spinner"
+import { Loader2 } from "lucide-react"
 import { placeOrder } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { isManual, isPaypal, isStripe } from "@lib/constants"
@@ -59,7 +59,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
         />
       )
     default:
-      return <Button disabled>Select a payment method</Button>
+      return <Button disabled className="w-full h-12">Select a payment method</Button>
   }
 }
 
@@ -74,9 +74,11 @@ const GiftCardPaymentButton = () => {
   return (
     <Button
       onClick={handleOrder}
-      isLoading={submitting}
+      disabled={submitting}
+      className="w-full h-12 text-base"
       data-testid="submit-order-button"
     >
+      {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
       Place order
     </Button>
   )
@@ -173,12 +175,12 @@ const StripePaymentButton = ({
   return (
     <>
       <Button
-        disabled={disabled || notReady}
+        disabled={disabled || notReady || submitting}
         onClick={handlePayment}
-        size="large"
-        isLoading={submitting}
+        className="w-full h-12 text-base"
         data-testid={dataTestId}
       >
+        {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
         Place order
       </Button>
       <ErrorMessage
@@ -237,12 +239,12 @@ const PayPalPaymentButton = ({
   const [{ isPending, isResolved }] = usePayPalScriptReducer()
 
   if (isPending) {
-    return <Spinner />
+    return <Loader2 className="h-6 w-6 animate-spin text-muted-foreground mx-auto" />
   }
 
   if (isResolved) {
     return (
-      <>
+      <div className="w-full">
         <PayPalButtons
           style={{ layout: "horizontal" }}
           createOrder={async () => session?.data.id as string}
@@ -254,12 +256,12 @@ const PayPalPaymentButton = ({
           error={errorMessage}
           data-testid="paypal-payment-error-message"
         />
-      </>
+      </div>
     )
   }
 }
 
-const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
+const ManualTestPaymentButton = ({ notReady, "data-testid": dataTestId }: { notReady: boolean, "data-testid"?: string }) => {
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -282,12 +284,12 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   return (
     <>
       <Button
-        disabled={notReady}
-        isLoading={submitting}
+        disabled={notReady || submitting}
         onClick={handlePayment}
-        size="large"
-        data-testid="submit-order-button"
+        className="w-full h-12 text-base"
+        data-testid={dataTestId || "submit-order-button"}
       >
+        {submitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
         Place order
       </Button>
       <ErrorMessage

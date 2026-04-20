@@ -1,4 +1,3 @@
-import { Heading, Text } from "@medusajs/ui"
 import Link from "next/link"
 
 import RefinementList from "@modules/store/components/refinement-list"
@@ -25,16 +24,16 @@ const SearchResultsTemplate = ({
 
   return (
     <>
-      <div className="flex justify-between border-b w-full py-6 px-8 small:px-14 items-center">
-        <div className="flex flex-col items-start">
-          <Text className="text-ui-fg-muted">Search Results for:</Text>
-          <Heading>
+      <div className="flex justify-between border-b border-border w-full py-6 px-8 small:px-14 items-center bg-background">
+        <div className="flex flex-col items-start translate-y-[-2px]">
+          <span className="text-sm text-muted-foreground">Search Results for:</span>
+          <h1 className="text-2xl font-bold text-foreground">
             {decodeURI(query)} ({ids.length})
-          </Heading>
+          </h1>
         </div>
         <LocalizedClientLink
           href="/store"
-          className="txt-medium text-ui-fg-subtle hover:text-ui-fg-base"
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           Clear
         </LocalizedClientLink>
@@ -53,7 +52,7 @@ const SearchResultsTemplate = ({
             </div>
           </>
         ) : (
-          <Text className="ml-8 small:ml-14 mt-3">No results.</Text>
+          <p className="ml-8 small:ml-14 mt-3 text-muted-foreground">No results.</p>
         )}
       </div>
     </>

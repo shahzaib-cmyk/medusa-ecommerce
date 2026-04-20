@@ -1,8 +1,9 @@
 "use client"
 
-import { Button } from "@medusajs/ui"
+import { Button } from "@lib/components/ui/button"
 import React from "react"
 import { useFormStatus } from "react-dom"
+import { Loader2 } from "lucide-react"
 
 export function SubmitButton({
   children,
@@ -17,15 +18,20 @@ export function SubmitButton({
 }) {
   const { pending } = useFormStatus()
 
+  const buttonVariant = variant === "primary" ? "default" : 
+                        variant === "secondary" ? "outline" :
+                        variant === "danger" ? "destructive" :
+                        variant === "transparent" ? "ghost" : "default"
+
   return (
     <Button
-      size="large"
       className={className}
       type="submit"
-      isLoading={pending}
-      variant={variant || "primary"}
+      disabled={pending}
+      variant={buttonVariant}
       data-testid={dataTestId}
     >
+      {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
       {children}
     </Button>
   )

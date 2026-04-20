@@ -1,9 +1,16 @@
-import { Dialog, Transition } from "@headlessui/react"
-import { clx } from "@medusajs/ui"
-import React, { Fragment } from "react"
-
-import { ModalProvider, useModal } from "@lib/context/modal-context"
-import X from "@modules/common/icons/x"
+import React from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@lib/components/ui/dialog"
+import { cn } from "@lib/util/cn"
+import { ModalProvider } from "@lib/context/modal-context"
+import { X } from "lucide-react"
+import { useModal } from "@lib/context/modal-context"
 
 type ModalProps = {
   isOpen: boolean
@@ -23,91 +30,47 @@ const Modal = ({
   'data-testid': dataTestId
 }: ModalProps) => {
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-[75]" onClose={close}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-opacity-75 backdrop-blur-md  h-screen" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 overflow-y-hidden">
-          <div
-            className={clx(
-              "flex min-h-full h-full justify-center p-4 text-center",
-              {
-                "items-center": !search,
-                "items-start": search,
-              }
-            )}
-          >
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel
-                data-testid={dataTestId}
-                className={clx(
-                  "flex flex-col justify-start w-full transform p-5 text-left align-middle transition-all max-h-[75vh] h-fit",
-                  {
-                    "max-w-md": size === "small",
-                    "max-w-xl": size === "medium",
-                    "max-w-3xl": size === "large",
-                    "bg-transparent shadow-none": search,
-                    "bg-white shadow-xl border rounded-rounded": !search,
-                  }
-                )}
-              >
-                <ModalProvider close={close}>{children}</ModalProvider>
-              </Dialog.Panel>
-            </Transition.Child>
-          </div>
-        </div>
-      </Dialog>
-    </Transition>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && close()}>
+      <DialogContent
+        data-testid={dataTestId}
+        className={cn(
+          "max-h-[85vh] overflow-y-auto sm:rounded-lg",
+          {
+            "max-w-md": size === "small",
+            "max-w-xl": size === "medium",
+            "max-w-3xl": size === "large",
+            "bg-transparent shadow-none border-none": search,
+          }
+        )}
+      >
+        <ModalProvider close={close}>{children}</ModalProvider>
+      </DialogContent>
+    </Dialog>
   )
 }
 
 const Title: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { close } = useModal()
-
   return (
-    <Dialog.Title className="flex items-center justify-between">
-      <div className="text-large-semi">{children}</div>
-      <div>
-        <button onClick={close} data-testid="close-modal-button">
-          <X size={20} />
-        </button>
-      </div>
-    </Dialog.Title>
+    <DialogHeader>
+      <DialogTitle className="text-xl font-semibold">{children}</DialogTitle>
+    </DialogHeader>
   )
 }
 
 const Description: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <Dialog.Description className="flex text-small-regular text-ui-fg-base items-center justify-center pt-2 pb-4 h-full">
+    <DialogDescription className="text-muted-foreground pt-2 pb-4">
       {children}
-    </Dialog.Description>
+    </DialogDescription>
   )
 }
 
 const Body: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <div className="flex justify-center">{children}</div>
+  return <div className="py-4">{children}</div>
 }
 
 const Footer: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <div className="flex items-center justify-end gap-x-4">{children}</div>
+  return <DialogFooter className="mt-4">{children}</DialogFooter>
 }
 
 Modal.Title = Title

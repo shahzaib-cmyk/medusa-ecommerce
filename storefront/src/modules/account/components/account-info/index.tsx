@@ -1,9 +1,12 @@
-import { Disclosure } from "@headlessui/react"
-import { Badge, Button, clx } from "@medusajs/ui"
-import { useEffect } from "react"
+"use client"
 
-import useToggleState from "@lib/hooks/use-toggle-state"
+import { useEffect } from "react"
 import { useFormStatus } from "react-dom"
+import { cn } from "@lib/util/cn"
+import { Button } from "@lib/components/ui/button"
+import { Badge } from "@lib/components/ui/badge"
+import useToggleState from "@lib/hooks/use-toggle-state"
+import { Loader2 } from "lucide-react"
 
 type AccountInfoProps = {
   label: string
@@ -13,7 +16,7 @@ type AccountInfoProps = {
   errorMessage?: string
   clearState: () => void
   children?: React.ReactNode
-  'data-testid'?: string
+  "data-testid"?: string
 }
 
 const AccountInfo = ({
@@ -24,10 +27,9 @@ const AccountInfo = ({
   clearState,
   errorMessage = "An error occurred, please try again",
   children,
-  'data-testid': dataTestid
+  "data-testid": dataTestid,
 }: AccountInfoProps) => {
   const { state, close, toggle } = useToggleState()
-
   const { pending } = useFormStatus()
 
   const handleToggle = () => {
@@ -42,22 +44,33 @@ const AccountInfo = ({
   }, [isSuccess, close])
 
   return (
-    <div className="text-small-regular" data-testid={dataTestid}>
-      <div className="flex items-end justify-between">
-        <div className="flex flex-col">
-          <span className="uppercase text-ui-fg-base">{label}</span>
-          <div className="flex items-center flex-1 basis-0 justify-end gap-x-4">
+    <div
+      className="pb-8 mb-8 text-sm border-b border-border last:border-0"
+      data-testid={dataTestid}
+    >
+      <div className="flex justify-between items-end">
+        <div className="flex flex-col gap-y-1">
+          <span className="uppercase text-[10px] tracking-widest font-bold text-muted-foreground">
+            {label}
+          </span>
+          <div className="flex flex-1 gap-x-4 justify-start items-center basis-0">
             {typeof currentInfo === "string" ? (
-              <span className="font-semibold" data-testid="current-info">{currentInfo}</span>
+              <span
+                className="text-base font-semibold text-foreground"
+                data-testid="current-info"
+              >
+                {currentInfo}
+              </span>
             ) : (
-              currentInfo
+              <div className="text-foreground">{currentInfo}</div>
             )}
           </div>
         </div>
         <div>
           <Button
-            variant="secondary"
-            className="w-[100px] min-h-[25px] py-1"
+            variant="outline"
+            size="sm"
+            className="w-[80px]"
             onClick={handleToggle}
             type={state ? "reset" : "button"}
             data-testid="edit-button"
@@ -69,69 +82,63 @@ const AccountInfo = ({
       </div>
 
       {/* Success state */}
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
-            {
-              "max-h-[1000px] opacity-100": isSuccess,
-              "max-h-0 opacity-0": !isSuccess,
-            }
-          )}
-          data-testid="success-message"
-        >
-          <Badge className="p-2 my-4" color="green">
-            <span>{label} updated succesfully</span>
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-300 ease-in-out",
+          isSuccess ? "opacity-100 max-h-[100px]" : "max-h-0 opacity-0"
+        )}
+        data-testid="success-message"
+      >
+        <div className="pt-4">
+          <Badge variant="default" className="px-3 py-1 rounded-md">
+            {label} updated successfully
           </Badge>
-        </Disclosure.Panel>
-      </Disclosure>
+        </div>
+      </div>
 
       {/* Error state  */}
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
-            {
-              "max-h-[1000px] opacity-100": isError,
-              "max-h-0 opacity-0": !isError,
-            }
-          )}
-          data-testid="error-message"
-        >
-          <Badge className="p-2 my-4" color="red">
-            <span>{errorMessage}</span>
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-300 ease-in-out",
+          isError ? "opacity-100 max-h-[100px]" : "max-h-0 opacity-0"
+        )}
+        data-testid="error-message"
+      >
+        <div className="pt-4">
+          <Badge variant="destructive" className="px-3 py-1 rounded-md">
+            {errorMessage}
           </Badge>
-        </Disclosure.Panel>
-      </Disclosure>
+        </div>
+      </div>
 
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-visible",
-            {
-              "max-h-[1000px] opacity-100": state,
-              "max-h-0 opacity-0": !state,
-            }
+      <div
+        className={cn(
+          "overflow-visible transition-all duration-300 ease-in-out",
+          state ? "mt-4 opacity-100 max-h-[1000px]" : "max-h-0 opacity-0"
+        )}
+      >
+        <div
+          className={cn(
+            "flex flex-col gap-y-4 py-4",
+            state ? "block" : "hidden"
           )}
         >
-          <div className="flex flex-col gap-y-2 py-4">
-            <div>{children}</div>
-            <div className="flex items-center justify-end mt-2">
-              <Button
-                isLoading={pending}
-                className="w-full small:max-w-[140px]"
-                type="submit"
-                data-testid="save-button"
-              >
-                Save changes
-              </Button>
-            </div>
+          <div className="p-4 rounded-lg border bg-muted/30 border-border">
+            {children}
           </div>
-        </Disclosure.Panel>
-      </Disclosure>
+          <div className="flex justify-end items-center mt-2">
+            <Button
+              disabled={pending}
+              className="w-full small:max-w-[140px]"
+              type="submit"
+              data-testid="save-button"
+            >
+              {pending && <Loader2 className="mr-2 w-4 h-4 animate-spin" />}
+              Save changes
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

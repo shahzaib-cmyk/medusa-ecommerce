@@ -1,4 +1,3 @@
-import { Heading } from "@medusajs/ui"
 import { cookies } from "next/headers"
 
 import CartTotals from "@modules/common/components/cart-totals"
@@ -21,24 +20,28 @@ export default async function OrderCompletedTemplate({
   const isOnboarding = cookieStore.get("_medusa_onboarding")?.value === "true"
 
   return (
-    <div className="py-6 min-h-[calc(100vh-64px)]">
-      <div className="flex flex-col gap-y-10 justify-center items-center w-full max-w-4xl h-full content-container">
+    <div className="py-6 min-h-[calc(100vh-64px)] bg-muted/20">
+      <div className="flex flex-col gap-y-10 justify-center items-center w-full max-w-4xl h-full content-container mx-auto">
         {isOnboarding && <OnboardingCta orderId={order.id} />}
         <div
-          className="flex flex-col gap-4 py-10 w-full max-w-4xl h-full bg-white"
+          className="flex flex-col gap-4 py-10 w-full max-w-4xl h-full bg-background border border-border rounded-xl px-8"
           data-testid="order-complete-container"
         >
-          <Heading
-            level="h1"
-            className="flex flex-col gap-y-3 mb-4 text-3xl text-ui-fg-base"
-          >
-            <span>Thank you!</span>
-            <span>Your order was placed successfully.</span>
-          </Heading>
+          <div className="flex flex-col gap-y-2 mb-8">
+            <span className="text-muted-foreground text-sm font-medium uppercase tracking-wider">Success</span>
+            <h1 className="text-3xl font-bold text-foreground">
+              Thank you! Your order was placed successfully.
+            </h1>
+          </div>
+          
           <OrderDetails order={order} />
-          <Heading level="h2" className="flex flex-row text-3xl-regular">
-            Summary
-          </Heading>
+          
+          <div className="mt-10 mb-4 border-b border-border pb-2">
+            <h2 className="text-2xl font-semibold text-foreground">
+              Summary
+            </h2>
+          </div>
+          
           <Items items={order.items} />
           <CartTotals totals={order} />
           <ShippingDetails order={order} />

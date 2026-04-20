@@ -1,4 +1,4 @@
-import { Container, clx } from "@medusajs/ui"
+import { cn } from "@lib/util/cn"
 import Image from "next/image"
 import React from "react"
 
@@ -25,9 +25,9 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   const initialImage = thumbnail || images?.[0]?.url
 
   return (
-    <Container
-      className={clx(
-        "relative w-full overflow-hidden p-4 bg-ui-bg-subtle shadow-elevation-card-rest rounded-large group-hover:shadow-elevation-card-hover transition-shadow ease-in-out duration-150",
+    <div
+      className={cn(
+        "relative w-full overflow-hidden p-4 bg-muted shadow-sm rounded-xl hover:shadow-md transition-all ease-in-out duration-200 border border-border group",
         className,
         {
           "aspect-[11/14]": isFeatured,
@@ -42,7 +42,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
       data-testid={dataTestid}
     >
       <ImageOrPlaceholder image={initialImage} size={size} />
-    </Container>
+    </div>
   )
 }
 
@@ -54,14 +54,14 @@ const ImageOrPlaceholder = ({
     <Image
       src={image}
       alt="Thumbnail"
-      className="absolute inset-0 object-cover object-center"
+      className="absolute inset-0 object-cover object-center group-hover:scale-105 transition-transform duration-500"
       draggable={false}
       quality={50}
       sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
       fill
     />
   ) : (
-    <div className="w-full h-full absolute inset-0 flex items-center justify-center">
+    <div className="w-full h-full absolute inset-0 flex items-center justify-center text-muted-foreground/40">
       <PlaceholderImage size={size === "small" ? 16 : 24} />
     </div>
   )

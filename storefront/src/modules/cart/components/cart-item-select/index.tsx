@@ -1,6 +1,5 @@
 "use client"
 
-import { IconBadge, clx } from "@medusajs/ui"
 import {
   SelectHTMLAttributes,
   forwardRef,
@@ -10,7 +9,7 @@ import {
   useState,
 } from "react"
 
-import ChevronDown from "@modules/common/icons/chevron-down"
+import { ChevronDown } from "lucide-react"
 
 type NativeSelectProps = {
   placeholder?: string
@@ -38,31 +37,29 @@ const CartItemSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
 
     return (
       <div>
-        <IconBadge
+        <div
           onFocus={() => innerRef.current?.focus()}
           onBlur={() => innerRef.current?.blur()}
-          className={clx(
-            "relative flex items-center txt-compact-small border text-ui-fg-base group",
-            className,
-            {
-              "text-ui-fg-subtle": isPlaceholder,
-            }
-          )}
+          className={`
+            relative flex items-center text-sm border rounded-lg group hover:border-primary/50 transition-colors
+            ${className || ''}
+            ${isPlaceholder ? 'text-muted-foreground' : 'text-foreground'}
+          `}
         >
           <select
             ref={innerRef}
             {...props}
-            className="appearance-none bg-transparent border-none px-4 transition-colors duration-150 focus:border-gray-700 outline-none w-16 h-16 items-center justify-center"
+            className="appearance-none bg-transparent border-none px-4 transition-colors duration-150 focus:border-gray-700 outline-none w-16 h-10 items-center justify-center cursor-pointer"
           >
             <option disabled value="">
               {placeholder}
             </option>
             {children}
           </select>
-          <span className="absolute flex pointer-events-none justify-end w-8 group-hover:animate-pulse">
-            <ChevronDown />
+          <span className="absolute flex pointer-events-none justify-end right-2">
+            <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
           </span>
-        </IconBadge>
+        </div>
       </div>
     )
   }

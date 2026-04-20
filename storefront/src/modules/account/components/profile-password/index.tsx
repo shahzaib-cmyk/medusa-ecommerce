@@ -1,18 +1,17 @@
 "use client"
 
 import React, { useEffect } from "react"
+import { useFormState } from "react-dom"
 
 import Input from "@modules/common/components/input"
-
 import AccountInfo from "../account-info"
-import { useFormState } from "react-dom"
 import { HttpTypes } from "@medusajs/types"
 
 type MyInformationProps = {
   customer: HttpTypes.StoreCustomer
 }
 
-const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
+const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
   const [successState, setSuccessState] = React.useState(false)
 
   // TODO: Add support for password updates
@@ -35,7 +34,7 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
       <AccountInfo
         label="Password"
         currentInfo={
-          <span>The password is not shown for security reasons</span>
+          <span className="text-muted-foreground">The password is not shown for security reasons</span>
         }
         isSuccess={successState}
         isError={!!state.error}
@@ -71,4 +70,4 @@ const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
   )
 }
 
-export default ProfileName
+export default ProfilePassword

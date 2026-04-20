@@ -1,34 +1,16 @@
-import { Table } from "@medusajs/ui"
-
 const SkeletonLineItem = () => {
   return (
-    <Table.Row className="w-full m-4">
-      <Table.Cell className="p-4 w-24">
-        <div className="flex w-24 h-24 p-4 bg-gray-200 animate-pulse" />
-      </Table.Cell>
-      <Table.Cell className="text-left">
-        <div className="flex flex-col gap-y-2">
-          <div className="w-32 h-4 bg-gray-200 animate-pulse" />
-          <div className="w-24 h-4 bg-gray-200 animate-pulse" />
-        </div>
-      </Table.Cell>
-      <Table.Cell>
-        <div className="flex gap-2 items-center">
-          <div className="w-6 h-8 bg-gray-200 animate-pulse" />
-          <div className="w-14 h-10 bg-gray-200 animate-pulse" />
-        </div>
-      </Table.Cell>
-      <Table.Cell>
-        <div className="flex gap-2">
-          <div className="w-12 h-6 bg-gray-200 animate-pulse" />
-        </div>
-      </Table.Cell>
-      <Table.Cell>
-        <div className="flex gap-2 justify-end">
-          <div className="w-12 h-6 bg-gray-200 animate-pulse" />
-        </div>
-      </Table.Cell>
-    </Table.Row>
+    <div className="flex items-center gap-x-4 py-4 border-b border-border last:border-0 w-full">
+      <div className="w-24 h-32 bg-muted rounded-lg animate-pulse shrink-0" />
+      <div className="flex flex-col gap-y-2 flex-grow">
+        <div className="w-48 h-5 bg-muted animate-pulse rounded-md" />
+        <div className="w-32 h-4 bg-muted animate-pulse rounded-md" />
+      </div>
+      <div className="flex flex-col items-end gap-y-2 shrink-0 pr-4">
+        <div className="w-16 h-5 bg-muted animate-pulse rounded-md" />
+        <div className="w-24 h-6 bg-muted animate-pulse rounded-md" />
+      </div>
+    </div>
   )
 }
 

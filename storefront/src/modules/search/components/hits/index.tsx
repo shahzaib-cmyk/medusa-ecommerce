@@ -1,4 +1,4 @@
-import { clx } from "@medusajs/ui"
+import { cn } from "@lib/util/cn"
 import React from "react"
 import { UseHitsProps, useHits, useSearchBox } from "react-instantsearch"
 
@@ -20,13 +20,10 @@ const Hits = ({
 
   return (
     <div
-      className={clx(
-        "transition-[height,max-height,opacity] duration-300 ease-in-out sm:overflow-hidden w-full sm:w-[50vw] mb-1 p-px",
+      className={cn(
+        "transition-all duration-300 ease-in-out sm:overflow-hidden w-full sm:w-[50vw] mb-1 p-px bg-background",
         className,
-        {
-          "max-h-full opacity-100": !!query,
-          "max-h-0 opacity-0": !query && !hits.length,
-        }
+        query ? "max-h-full opacity-100" : "max-h-0 opacity-0 pointer-events-none"
       )}
     >
       <div
@@ -36,9 +33,7 @@ const Hits = ({
         {hits.slice(0, 6).map((hit, index) => (
           <li
             key={index}
-            className={clx("list-none", {
-              "hidden sm:block": index > 2,
-            })}
+            className={cn("list-none", index > 2 && "hidden sm:block")}
           >
             <Hit hit={hit as unknown as ProductHit} />
           </li>

@@ -5,8 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -24,7 +22,7 @@
 
   input:focus ~ label,
   input:not(:placeholder-shown) ~ label {
-    @apply -translate-y-2 text-xsmall-regular;
+    @apply -translate-y-2 text-[10px] leading-4;
   }
 
   input:focus ~ label {
@@ -62,94 +60,42 @@
   .contrast-btn {
     @apply px-4 py-2 rounded-full border border-black transition-colors duration-200 ease-in hover:bg-black hover:text-white;
   }
-
-  .text-xsmall-regular {
-    @apply text-[10px] leading-4 font-normal;
-  }
-
-  .text-small-regular {
-    @apply text-xs font-normal leading-5;
-  }
-
-  .text-small-semi {
-    @apply text-xs font-semibold leading-5;
-  }
-
-  .text-base-regular {
-    @apply text-sm font-normal leading-6;
-  }
-
-  .text-base-semi {
-    @apply text-sm font-semibold leading-6;
-  }
-
-  .text-large-regular {
-    @apply text-base font-normal leading-6;
-  }
-
-  .text-large-semi {
-    @apply text-base font-semibold leading-6;
-  }
-
-  .text-xl-regular {
-    @apply text-2xl leading-[36px] font-normal;
-  }
-
-  .text-xl-semi {
-    @apply text-2xl leading-[36px] font-semibold;
-  }
-
-  .text-2xl-regular {
-    @apply text-[30px] leading-[48px] font-normal;
-  }
-
-  .text-2xl-semi {
-    @apply text-[30px] leading-[48px] font-semibold;
-  }
-
-  .text-3xl-regular {
-    @apply text-[32px] leading-[44px] font-normal;
-  }
-
-  .text-3xl-semi {
-    @apply text-[32px] leading-[44px] font-semibold;
-  }
 }
 
 @layer base {
   :root {
-    --background: 223.8136 -172.5242% 100.0000%;
-    --foreground: 223.8136 0.0000% 3.9388%;
-    --card: 223.8136 -172.5242% 100.0000%;
-    --card-foreground: 223.8136 0.0000% 3.9388%;
-    --popover: 223.8136 -172.5242% 100.0000%;
-    --popover-foreground: 223.8136 0.0000% 3.9388%;
-    --primary: 223.8136 0.0000% 9.0527%;
-    --primary-foreground: 223.8136 0.0004% 98.0256%;
-    --secondary: 223.8136 0.0002% 96.0587%;
-    --secondary-foreground: 223.8136 0.0000% 9.0527%;
-    --muted: 223.8136 0.0002% 96.0587%;
-    --muted-foreground: 223.8136 0.0000% 45.1519%;
-    --accent: 223.8136 0.0002% 96.0587%;
-    --accent-foreground: 223.8136 0.0000% 9.0527%;
-    --destructive: 351.7303 123.6748% 40.5257%;
-    --destructive-foreground: 223.8136 -172.5242% 100.0000%;
-    --border: 223.8136 0.0001% 89.8161%;
-    --input: 223.8136 0.0001% 89.8161%;
-    --ring: 223.8136 0.0000% 63.0163%;
-    --chart-1: 211.7880 101.9718% 78.6759%;
-    --chart-2: 217.4076 91.3672% 59.5787%;
-    --chart-3: 221.4336 86.3731% 54.0624%;
-    --chart-4: 223.6587 78.7180% 47.8635%;
-    --chart-5: 226.5426 70.0108% 39.9224%;
-    --sidebar: 223.8136 0.0004% 98.0256%;
-    --sidebar-foreground: 223.8136 0.0000% 3.9388%;
-    --sidebar-primary: 223.8136 0.0000% 9.0527%;
-    --sidebar-primary-foreground: 223.8136 0.0004% 98.0256%;
-    --sidebar-accent: 223.8136 0.0002% 96.0587%;
-    --sidebar-accent-foreground: 223.8136 0.0000% 9.0527%;
-    --sidebar-border: 223.8136 0.0001% 89.8161%;
-    --sidebar-ring: 223.8136 0.0000% 63.0163%;
+    --background: 222 0% 100%;
+    --foreground: 222 0% 4%;
+    --card: 222 0% 100%;
+    --card-foreground: 222 0% 4%;
+    --popover: 222 0% 100%;
+    --popover-foreground: 222 0% 4%;
+    --primary: 222 0% 9%;
+    --primary-foreground: 222 0% 98%;
+    --secondary: 222 0% 96%;
+    --secondary-foreground: 222 0% 9%;
+    --muted: 222 0% 96%;
+    --muted-foreground: 222 0% 45%;
+    --accent: 222 0% 96%;
+    --accent-foreground: 222 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 222 0% 98%;
+    --border: 222 0% 90%;
+    --input: 222 0% 90%;
+    --ring: 222 0% 63%;
+    --chart-1: 211 100% 78%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 221 86% 54%;
+    --chart-4: 223 78% 47%;
+    --chart-5: 226 70% 40%;
+    --sidebar: 222 0% 98%;
+    --sidebar-foreground: 222 0% 4%;
+    --sidebar-primary: 222 0% 9%;
+    --sidebar-primary-foreground: 222 0% 98%;
+    --sidebar-accent: 222 0% 96%;
+    --sidebar-accent-foreground: 222 0% 9%;
+    --sidebar-border: 222 0% 90%;
+    --sidebar-ring: 222 0% 63%;
     --font-heading: var(--font-sans);
     --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -173,58 +119,45 @@
     --spacing: 0.25rem;
   }
 
-  .dark {
-    --background: 223.8136 0.0000% 3.9388%;
-    --foreground: 223.8136 0.0004% 98.0256%;
-    --card: 223.8136 0.0000% 9.0527%;
-    --card-foreground: 223.8136 0.0004% 98.0256%;
-    --popover: 223.8136 0.0000% 14.9382%;
-    --popover-foreground: 223.8136 0.0004% 98.0256%;
-    --primary: 223.8136 0.0001% 89.8161%;
-    --primary-foreground: 223.8136 0.0000% 9.0527%;
-    --secondary: 223.8136 0.0000% 14.9382%;
-    --secondary-foreground: 223.8136 0.0004% 98.0256%;
-    --muted: 223.8136 0.0000% 14.9382%;
-    --muted-foreground: 223.8136 0.0000% 63.0163%;
-    --accent: 223.8136 0.0000% 25.0471%;
-    --accent-foreground: 223.8136 0.0004% 98.0256%;
-    --destructive: 358.7594 101.8439% 69.8357%;
-    --destructive-foreground: 223.8136 0.0004% 98.0256%;
-    --border: 223.8136 0.0000% 15.5096%;
-    --input: 223.8136 0.0000% 20.3885%;
-    --ring: 223.8136 0.0000% 45.1519%;
-    --chart-1: 211.7880 101.9718% 78.6759%;
-    --chart-2: 217.4076 91.3672% 59.5787%;
-    --chart-3: 221.4336 86.3731% 54.0624%;
-    --chart-4: 223.6587 78.7180% 47.8635%;
-    --chart-5: 226.5426 70.0108% 39.9224%;
-    --sidebar: 223.8136 0.0000% 9.0527%;
-    --sidebar-foreground: 223.8136 0.0004% 98.0256%;
-    --sidebar-primary: 225.3451 84.0953% 48.9841%;
-    --sidebar-primary-foreground: 223.8136 0.0004% 98.0256%;
-    --sidebar-accent: 223.8136 0.0000% 14.9382%;
-    --sidebar-accent-foreground: 223.8136 0.0004% 98.0256%;
-    --sidebar-border: 223.8136 0.0000% 15.5096%;
-    --sidebar-ring: 223.8136 0.0000% 32.1993%;
-    --font-heading: var(--font-sans);
-    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --radius: 0.625rem;
-    --shadow-x: 0;
-    --shadow-y: 1px;
-    --shadow-blur: 3px;
-    --shadow-spread: 0px;
-    --shadow-opacity: 0.1;
-    --shadow-color: oklch(0 0 0);
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
-    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
-    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
-    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  .dark, [data-mode="dark"] {
+    --background: 224 0% 5%;
+    --foreground: 224 0% 98%;
+    --card: 224 0% 7%;
+    --card-foreground: 224 0% 98%;
+    --popover: 224 0% 7%;
+    --popover-foreground: 224 0% 98%;
+    --primary: 224 0% 98%;
+    --primary-foreground: 224 0% 9%;
+    --secondary: 224 0% 15%;
+    --secondary-foreground: 224 0% 98%;
+    --muted: 224 0% 15%;
+    --muted-foreground: 224 0% 63%;
+    --accent: 224 0% 15%;
+    --accent-foreground: 224 0% 98%;
+    --destructive: 358 100% 70%;
+    --destructive-foreground: 224 0% 100%;
+    --border: 224 0% 18%;
+    --input: 224 0% 18%;
+    --ring: 224 0% 80%;
+    --chart-1: 212 100% 79%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 221 86% 54%;
+    --chart-4: 224 79% 48%;
+    --chart-5: 227 70% 40%;
+    --sidebar: 224 0% 7%;
+    --sidebar-foreground: 224 0% 98%;
+    --sidebar-primary: 224 0% 98%;
+    --sidebar-primary-foreground: 224 0% 9%;
+    --sidebar-accent: 224 0% 15%;
+    --sidebar-accent-foreground: 224 0% 98%;
+    --sidebar-border: 224 0% 18%;
+    --sidebar-ring: 224 0% 80%;
+  }
+  .theme {
+    --animate-marquee: marquee var(--duration) infinite linear;
+    --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+    --animate-shimmer-slide: shimmer-slide var(--speed) ease-in-out infinite alternate;
+    --animate-spin-around: spin-around calc(var(--speed) * 2) infinite linear;
   }
 }
 
@@ -237,5 +170,18 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer base {
+  [data-state] {
+    --tw-enter-scale: 1 !important;
+    --tw-exit-scale: 1 !important;
+    --tw-enter-opacity: 1 !important;
+    --tw-exit-opacity: 1 !important;
+    --tw-enter-translate-x: 0;
+    --tw-enter-translate-y: 0;
+    --tw-exit-translate-x: 0;
+    --tw-exit-translate-y: 0;
   }
 }

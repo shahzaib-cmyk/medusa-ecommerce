@@ -1,26 +1,32 @@
-const Radio = ({ checked, 'data-testid': dataTestId }: { checked: boolean, 'data-testid'?: string }) => {
+"use client"
+
+import { cn } from "@lib/util/cn"
+
+const Radio = ({ 
+  checked, 
+  "data-testid": dataTestId,
+  className
+}: { 
+  checked: boolean, 
+  "data-testid"?: string,
+  className?: string
+}) => {
   return (
-    <>
-      <button
-        type="button"
-        role="radio"
-        aria-checked="true"
-        data-state={checked ? "checked" : "unchecked"}
-        className="group relative flex h-5 w-5 items-center justify-center outline-none"
-        data-testid={dataTestId || 'radio-button'}
-      >
-        <div className="shadow-borders-base group-hover:shadow-borders-strong-with-shadow bg-ui-bg-base group-data-[state=checked]:bg-ui-bg-interactive group-data-[state=checked]:shadow-borders-interactive group-focus:!shadow-borders-interactive-with-focus group-disabled:!bg-ui-bg-disabled group-disabled:!shadow-borders-base flex h-[14px] w-[14px] items-center justify-center rounded-full transition-all">
-          {checked && (
-            <span
-              data-state={checked ? "checked" : "unchecked"}
-              className="group flex items-center justify-center"
-            >
-              <div className="bg-ui-bg-base shadow-details-contrast-on-bg-interactive group-disabled:bg-ui-fg-disabled rounded-full group-disabled:shadow-none h-1.5 w-1.5"></div>
-            </span>
-          )}
-        </div>
-      </button>
-    </>
+    <div
+      role="radio"
+      aria-checked={checked}
+      data-state={checked ? "checked" : "unchecked"}
+      className={cn(
+        "flex h-5 w-5 items-center justify-center rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        checked ? "bg-primary border-primary" : "bg-transparent border-input",
+        className
+      )}
+      data-testid={dataTestId || "radio-button"}
+    >
+      {checked && (
+        <div className="h-2 w-2 rounded-full bg-white shadow-sm" />
+      )}
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import ChevronDown from "@modules/common/icons/chevron-down"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
+import StorefrontCTA from "@modules/layout/components/medusa-cta"
+import { ChevronLeft } from "lucide-react"
 
 export default function CheckoutLayout({
   children,
@@ -8,35 +8,35 @@ export default function CheckoutLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="w-full bg-white relative small:min-h-screen">
-      <div className="h-16 bg-white border-b ">
-        <nav className="flex h-full items-center content-container justify-between">
+    <div className="relative w-full bg-background small:min-h-screen">
+      <div className="h-16 border-b bg-background border-border">
+        <nav className="flex justify-between items-center h-full content-container">
           <LocalizedClientLink
             href="/cart"
-            className="text-small-semi text-ui-fg-base flex items-center gap-x-2 uppercase flex-1 basis-0"
+            className="flex flex-1 gap-x-2 items-center text-sm font-semibold uppercase transition-colors text-foreground basis-0 hover:text-primary"
             data-testid="back-to-cart-link"
           >
-            <ChevronDown className="rotate-90" size={16} />
-            <span className="mt-px hidden small:block txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base ">
+            <ChevronLeft size={16} />
+            <span className="hidden small:block">
               Back to shopping cart
             </span>
-            <span className="mt-px block small:hidden txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base">
+            <span className="block small:hidden">
               Back
             </span>
           </LocalizedClientLink>
           <LocalizedClientLink
             href="/"
-            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+            className="text-xl font-bold tracking-tight uppercase transition-colors text-foreground hover:text-primary"
             data-testid="store-link"
           >
-            Medusa Store
+            YourBrand Store
           </LocalizedClientLink>
           <div className="flex-1 basis-0" />
         </nav>
       </div>
       <div className="relative" data-testid="checkout-container">{children}</div>
-      <div className="py-4 w-full flex items-center justify-center">
-        <MedusaCTA />
+      <div className="flex justify-center items-center py-4 w-full">
+        <StorefrontCTA />
       </div>
     </div>
   )

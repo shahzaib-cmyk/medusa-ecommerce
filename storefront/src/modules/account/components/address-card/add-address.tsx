@@ -1,7 +1,7 @@
 "use client"
 
-import { Plus } from "@medusajs/icons"
-import { Button, Heading } from "@medusajs/ui"
+import { Plus } from "lucide-react"
+import { Button } from "@lib/components/ui/button"
 import { useEffect, useState } from "react"
 import { useFormState } from "react-dom"
 
@@ -43,17 +43,17 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
   return (
     <>
       <button
-        className="border border-ui-border-base rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
+        className="border border-border rounded-lg p-5 min-h-[220px] h-full w-full flex flex-col justify-between hover:border-primary transition-colors group bg-muted/30"
         onClick={open}
         data-testid="add-address-button"
       >
-        <span className="text-base-semi">New address</span>
-        <Plus />
+        <span className="text-base font-semibold text-foreground text-left">New address</span>
+        <Plus className="text-muted-foreground group-hover:text-foreground transition-colors self-end" />
       </button>
 
       <Modal isOpen={state} close={close} data-testid="add-address-modal">
         <Modal.Title>
-          <Heading className="mb-2">Add address</Heading>
+          Add address
         </Modal.Title>
         <form action={formAction}>
           <Modal.Body>
@@ -131,7 +131,7 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
             </div>
             {formState.error && (
               <div
-                className="text-rose-500 text-small-regular py-2"
+                className="text-destructive text-sm py-2"
                 data-testid="address-error"
               >
                 {formState.error}
@@ -139,17 +139,17 @@ const AddAddress = ({ region }: { region: HttpTypes.StoreRegion }) => {
             )}
           </Modal.Body>
           <Modal.Footer>
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 w-full justify-end">
               <Button
                 type="reset"
-                variant="secondary"
+                variant="outline"
                 onClick={close}
                 className="h-10"
                 data-testid="cancel-button"
               >
                 Cancel
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton className="h-10" data-testid="save-button">Save</SubmitButton>
             </div>
           </Modal.Footer>
         </form>

@@ -1,16 +1,16 @@
 "use client"
 
-import { clx } from "@medusajs/ui"
+import { cn } from "@lib/util/cn"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 export function Pagination({
   page,
   totalPages,
-  'data-testid': dataTestid
+  "data-testid": dataTestid,
 }: {
   page: number
   totalPages: number
-  'data-testid'?: string
+  "data-testid"?: string
 }) {
   const router = useRouter()
   const pathname = usePathname()
@@ -35,8 +35,10 @@ export function Pagination({
   ) => (
     <button
       key={p}
-      className={clx("txt-xlarge-plus text-ui-fg-muted", {
-        "text-ui-fg-base hover:text-ui-fg-subtle": isCurrent,
+      className={cn("text-xl font-medium transition-colors", {
+        "text-muted-foreground hover:text-foreground": !isCurrent,
+        "font-bold underline pointer-events-none text-foreground underline-offset-8":
+          isCurrent,
       })}
       disabled={isCurrent}
       onClick={() => handlePageChange(p)}
@@ -49,7 +51,7 @@ export function Pagination({
   const renderEllipsis = (key: string) => (
     <span
       key={key}
-      className="txt-xlarge-plus text-ui-fg-muted items-center cursor-default"
+      className="items-center text-xl font-medium cursor-default text-muted-foreground"
     >
       ...
     </span>
@@ -107,8 +109,10 @@ export function Pagination({
 
   // Render the component
   return (
-    <div className="flex justify-center w-full mt-12">
-      <div className="flex gap-3 items-end" data-testid={dataTestid}>{renderPageButtons()}</div>
+    <div className="flex justify-center pb-12 mt-12 w-full">
+      <div className="flex gap-x-6 items-center" data-testid={dataTestid}>
+        {renderPageButtons()}
+      </div>
     </div>
   )
 }

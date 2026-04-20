@@ -58,12 +58,12 @@ export default async function RelatedProducts({
   return (
     <div className="product-page-constraint">
       <div className="flex flex-col items-center mb-16 text-center">
-        <span className="mb-6 text-gray-600 text-base-regular">
+        <span className="mb-4 text-muted-foreground text-sm font-medium uppercase tracking-wider">
           Related products
         </span>
-        <p className="max-w-lg text-2xl-regular text-ui-fg-base">
+        <h2 className="max-w-lg text-3xl font-bold text-foreground">
           You might also want to check out these products.
-        </p>
+        </h2>
       </div>
 
       <ul className="grid grid-cols-2 gap-x-6 gap-y-8 small:grid-cols-3 medium:grid-cols-4">

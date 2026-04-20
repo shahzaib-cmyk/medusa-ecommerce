@@ -1,5 +1,6 @@
-import { Checkbox, Label } from "@medusajs/ui"
 import React from "react"
+import { Checkbox } from "@lib/components/ui/checkbox"
+import { Label } from "@lib/components/ui/label"
 
 type CheckboxProps = {
   checked?: boolean
@@ -17,22 +18,17 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
   'data-testid': dataTestId
 }) => {
   return (
-    <div className="flex items-center space-x-2 ">
+    <div className="flex items-center space-x-2">
       <Checkbox
-        className="text-base-regular flex items-center gap-x-2"
-        id="checkbox"
-        role="checkbox"
-        type="button"
+        id={`checkbox-${name || label}`}
         checked={checked}
-        aria-checked={checked}
         onClick={onChange}
         name={name}
         data-testid={dataTestId}
       />
       <Label
-        htmlFor="checkbox"
-        className="!transform-none !txt-medium"
-        size="large"
+        htmlFor={`checkbox-${name || label}`}
+        className="text-sm font-medium leading-none cursor-pointer"
       >
         {label}
       </Label>

@@ -12,7 +12,9 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
   return (
     <>
       <Nav />
-      {props.children}
+      <div className="overflow-x-hidden">
+        {props.children}
+      </div>
       <Footer />
     </>
   )

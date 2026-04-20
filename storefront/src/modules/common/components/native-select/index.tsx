@@ -1,5 +1,5 @@
-import { ChevronUpDown } from "@medusajs/icons"
-import { clx } from "@medusajs/ui"
+import { ChevronDown } from "lucide-react"
+import { cn } from "@lib/util/cn"
 import {
   SelectHTMLAttributes,
   forwardRef,
@@ -37,33 +37,25 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     }, [innerRef.current?.value])
 
     return (
-      <div>
-        <div
-          onFocus={() => innerRef.current?.focus()}
-          onBlur={() => innerRef.current?.blur()}
-          className={clx(
-            "relative flex items-center text-base-regular border border-ui-border-base bg-ui-bg-subtle rounded-md hover:bg-ui-bg-field-hover",
-            className,
-            {
-              "text-ui-fg-muted": isPlaceholder,
-            }
+      <div className="relative">
+        <select
+          ref={innerRef}
+          defaultValue={defaultValue}
+          {...props}
+          className={cn(
+            "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm appearance-none ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            isPlaceholder ? "text-muted-foreground" : "text-foreground",
+            className
           )}
         >
-          <select
-            ref={innerRef}
-            defaultValue={defaultValue}
-            {...props}
-            className="appearance-none flex-1 bg-transparent border-none px-4 py-2.5 transition-colors duration-150 outline-none "
-          >
-            <option disabled value="">
-              {placeholder}
-            </option>
-            {children}
-          </select>
-          <span className="absolute right-4 inset-y-0 flex items-center pointer-events-none ">
-            <ChevronUpDown />
-          </span>
-        </div>
+          <option disabled value="">
+            {placeholder}
+          </option>
+          {children}
+        </select>
+        <span className="absolute right-3 top-3 flex items-center pointer-events-none text-muted-foreground">
+          <ChevronDown size={16} />
+        </span>
       </div>
     )
   }

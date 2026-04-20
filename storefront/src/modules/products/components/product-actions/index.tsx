@@ -1,9 +1,10 @@
 "use client"
 
-import { Button } from "@medusajs/ui"
+import { Button } from "@lib/components/ui/button"
 import { isEqual } from "lodash"
 import { useParams } from "next/navigation"
 import { useEffect, useMemo, useRef, useState } from "react"
+import { Loader2 } from "lucide-react"
 
 import { useIntersection } from "@lib/hooks/use-in-view"
 import Divider from "@modules/common/components/divider"
@@ -138,16 +139,19 @@ export default function ProductActions({
         <Button
           onClick={handleAddToCart}
           disabled={!inStock || !selectedVariant || !!disabled || isAdding}
-          variant="primary"
+          variant="default"
           className="w-full h-10"
-          isLoading={isAdding}
           data-testid="add-product-button"
         >
-          {!selectedVariant
-            ? "Select variant"
-            : !inStock
-            ? "Out of stock"
-            : "Add to cart"}
+          {isAdding ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : !selectedVariant ? (
+            "Select variant"
+          ) : !inStock ? (
+            "Out of stock"
+          ) : (
+            "Add to cart"
+          )}
         </Button>
         <MobileActions
           product={product}

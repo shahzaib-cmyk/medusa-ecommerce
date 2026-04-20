@@ -1,6 +1,6 @@
 import { deleteLineItem } from "@lib/data/cart"
-import { Spinner, Trash } from "@medusajs/icons"
-import { clx } from "@medusajs/ui"
+import { cn } from "@lib/util/cn"
+import { Loader2, Trash2 } from "lucide-react"
 import { useState } from "react"
 
 const DeleteButton = ({
@@ -22,17 +22,16 @@ const DeleteButton = ({
   }
 
   return (
-    <div
-      className={clx(
-        "flex items-center justify-between text-small-regular",
-        className
-      )}
-    >
+    <div className={cn("flex justify-between items-center text-sm", className)}>
       <button
-        className="flex gap-x-1 text-ui-fg-subtle hover:text-ui-fg-base cursor-pointer"
+        className="flex gap-x-2 items-center transition-colors cursor-pointer text-muted-foreground hover:text-destructive"
         onClick={() => handleDelete(id)}
       >
-        {isDeleting ? <Spinner className="animate-spin" /> : <Trash />}
+        {isDeleting ? (
+          <Loader2 className="w-4 h-4 animate-spin" />
+        ) : (
+          <Trash2 className="w-4 h-4" />
+        )}
         <span>{children}</span>
       </button>
     </div>

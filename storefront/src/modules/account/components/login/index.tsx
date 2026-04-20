@@ -1,4 +1,4 @@
-import { useFormState } from "react-dom"
+import { useActionState } from "react"
 
 import { LOGIN_VIEW } from "@modules/account/templates/login-template"
 import Input from "@modules/common/components/input"
@@ -11,15 +11,15 @@ type Props = {
 }
 
 const Login = ({ setCurrentView }: Props) => {
-  const [message, formAction] = useFormState(login, null)
+  const [message, formAction] = useActionState(login, null)
 
   return (
     <div
       className="max-w-sm w-full flex flex-col items-center"
       data-testid="login-page"
     >
-      <h1 className="text-large-semi uppercase mb-6">Welcome back</h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-8">
+      <h1 className="text-2xl font-semibold uppercase mb-6 text-foreground">Welcome back</h1>
+      <p className="text-center text-base text-muted-foreground mb-8">
         Sign in to access an enhanced shopping experience.
       </p>
       <form className="w-full" action={formAction}>
@@ -47,17 +47,17 @@ const Login = ({ setCurrentView }: Props) => {
           Sign in
         </SubmitButton>
       </form>
-      <span className="text-center text-ui-fg-base text-small-regular mt-6">
+      <div className="text-center text-muted-foreground text-sm mt-6">
         Not a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          className="underline"
+          className="underline text-foreground hover:text-foreground/80 transition-colors"
           data-testid="register-button"
         >
           Join us
         </button>
         .
-      </span>
+      </div>
     </div>
   )
 }

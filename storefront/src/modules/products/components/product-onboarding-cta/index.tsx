@@ -1,4 +1,4 @@
-import { Button, Container, Text } from "@medusajs/ui"
+import { Button } from "@lib/components/ui/button"
 import { cookies } from "next/headers"
 
 const ProductOnboardingCta = async () => {
@@ -10,19 +10,24 @@ const ProductOnboardingCta = async () => {
   }
 
   return (
-    <Container className="p-8 w-full max-w-4xl h-full bg-ui-bg-subtle">
-      <div className="flex flex-col gap-y-4 center">
-        <Text className="text-xl text-ui-fg-base">
+    <div className="max-w-4xl h-full bg-muted/30 border border-border rounded-xl w-full mx-auto">
+      <div className="flex flex-col gap-y-4 items-center p-8 text-center">
+        <h3 className="text-foreground text-xl font-semibold">
           Your demo product was successfully created! 🎉
-        </Text>
-        <Text className="text-ui-fg-subtle text-small-regular">
+        </h3>
+        <p className="text-muted-foreground text-sm">
           You can now continue setting up your store in the admin.
-        </Text>
-        <a href="http://localhost:7001/a/orders?onboarding_step=create_order_nextjs">
-          <Button className="w-full">Continue setup in admin</Button>
+        </p>
+        <a 
+          href="http://localhost:7001/a/orders?onboarding_step=create_order_nextjs"
+          className="w-full sm:w-fit"
+        >
+          <Button className="w-full px-8" variant="default">
+            Continue setup in admin
+          </Button>
         </a>
       </div>
-    </Container>
+    </div>
   )
 }
 

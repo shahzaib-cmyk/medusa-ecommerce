@@ -1,34 +1,26 @@
-import { Table } from "@medusajs/ui"
-
 const SkeletonCartItem = () => {
   return (
-    <Table.Row className="w-full m-4">
-      <Table.Cell className="!pl-0 p-4 w-24">
-        <div className="flex w-24 h-24 p-4 bg-gray-200 rounded-large animate-pulse" />
-      </Table.Cell>
-      <Table.Cell className="text-left">
+    <div className="grid grid-cols-5 gap-x-4 items-center py-6 border-b border-border last:border-0">
+      <div className="col-span-2 flex items-center gap-x-4">
+        <div className="w-24 h-32 bg-muted rounded-lg animate-pulse shrink-0" />
         <div className="flex flex-col gap-y-2">
-          <div className="w-32 h-4 bg-gray-200 animate-pulse" />
-          <div className="w-24 h-4 bg-gray-200 animate-pulse" />
+          <div className="w-40 h-5 bg-muted animate-pulse rounded-md" />
+          <div className="w-24 h-4 bg-muted animate-pulse rounded-md" />
         </div>
-      </Table.Cell>
-      <Table.Cell>
-        <div className="flex gap-2 items-center">
-          <div className="w-6 h-8 bg-gray-200 animate-pulse" />
-          <div className="w-14 h-10 bg-gray-200 animate-pulse" />
+      </div>
+      <div>
+        <div className="flex flex-col gap-y-2">
+          <div className="w-20 h-4 bg-muted animate-pulse rounded-md" />
+          <div className="w-12 h-4 bg-muted animate-pulse rounded-md" />
         </div>
-      </Table.Cell>
-      <Table.Cell>
-        <div className="flex gap-2">
-          <div className="w-12 h-6 bg-gray-200 animate-pulse" />
-        </div>
-      </Table.Cell>
-      <Table.Cell className="!pr-0 text-right">
-        <div className="flex gap-2 justify-end">
-          <div className="w-12 h-6 bg-gray-200 animate-pulse" />
-        </div>
-      </Table.Cell>
-    </Table.Row>
+      </div>
+      <div>
+        <div className="w-16 h-8 bg-muted animate-pulse rounded-md" />
+      </div>
+      <div className="flex justify-end pr-4">
+        <div className="w-20 h-6 bg-muted animate-pulse rounded-md" />
+      </div>
+    </div>
   )
 }
 
