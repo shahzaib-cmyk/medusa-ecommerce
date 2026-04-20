@@ -36,6 +36,11 @@
       "sourceType": "github",
       "computedHash": "9df255145bc978dd21390c725ee372d82126fc08416c67fb1d278457a93253a1"
     },
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "computedHash": "642a177bee320618caa49f5106cadb4e7594c606e867f61ba7b56d19cf745cd5"
+    },
     "storefront-best-practices": {
       "source": "medusajs/medusa-agent-skills",
       "sourceType": "github",

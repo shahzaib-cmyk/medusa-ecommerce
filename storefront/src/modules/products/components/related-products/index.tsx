@@ -8,7 +8,7 @@ type RelatedProductsProps = {
   countryCode: string
 }
 
-type StoreProductParamsWithTags = HttpTypes.StoreProductParams & {
+type StoreProductParamsWithTags = HttpTypes.StoreProductListParams & {
   tags?: string[]
 }
 
@@ -23,7 +23,7 @@ export default async function RelatedProducts({
   const region = await getRegion(countryCode)
 
   if (!region) {
-  const queryParams: StoreProductParamsWithTags = {}
+    const queryParams: StoreProductParamsWithTags = {}
   }
 
   // edit this function to define your related products logic
@@ -57,16 +57,16 @@ export default async function RelatedProducts({
 
   return (
     <div className="product-page-constraint">
-      <div className="flex flex-col items-center text-center mb-16">
-        <span className="text-base-regular text-gray-600 mb-6">
+      <div className="flex flex-col items-center mb-16 text-center">
+        <span className="mb-6 text-gray-600 text-base-regular">
           Related products
         </span>
-        <p className="text-2xl-regular text-ui-fg-base max-w-lg">
+        <p className="max-w-lg text-2xl-regular text-ui-fg-base">
           You might also want to check out these products.
         </p>
       </div>
 
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
+      <ul className="grid grid-cols-2 gap-x-6 gap-y-8 small:grid-cols-3 medium:grid-cols-4">
         {products.map((product) => (
           <li key={product.id}>
             {region && <Product region={region} product={product} />}

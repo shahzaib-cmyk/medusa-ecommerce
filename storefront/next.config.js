@@ -7,14 +7,12 @@ checkEnvVariables()
  */
 const nextConfig = {
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
+    qualities: [50, 75],
     remotePatterns: [
       {
         protocol: "http",
@@ -50,9 +48,6 @@ const nextConfig = {
       }] : []),
     ],
   },
-  serverRuntimeConfig: {
-    port: process.env.PORT || 3000
-  }
 }
 
 module.exports = nextConfig

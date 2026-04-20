@@ -1,17 +1,18 @@
 import { Button, Container, Text } from "@medusajs/ui"
 import { cookies } from "next/headers"
 
-const ProductOnboardingCta = () => {
-  const isOnboarding = cookies().get("_medusa_onboarding")?.value === "true"
+const ProductOnboardingCta = async () => {
+  const cookieStore = await cookies()
+  const isOnboarding = cookieStore.get("_medusa_onboarding")?.value === "true"
 
   if (!isOnboarding) {
     return null
   }
 
   return (
-    <Container className="max-w-4xl h-full bg-ui-bg-subtle w-full p-8">
+    <Container className="p-8 w-full max-w-4xl h-full bg-ui-bg-subtle">
       <div className="flex flex-col gap-y-4 center">
-        <Text className="text-ui-fg-base text-xl">
+        <Text className="text-xl text-ui-fg-base">
           Your demo product was successfully created! 🎉
         </Text>
         <Text className="text-ui-fg-subtle text-small-regular">
