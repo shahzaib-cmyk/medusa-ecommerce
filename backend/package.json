@@ -21,6 +21,7 @@
     "email:dev": "email dev --dir=./src/modules/email-notifications/templates --port=3002"
   },
   "dependencies": {
+    "@agilo/medusa-analytics-plugin": "^1.4.0",
     "@medusajs/admin-sdk": "2.13.6",
     "@medusajs/admin-shared": "2.13.6",
     "@medusajs/cli": "2.13.6",
