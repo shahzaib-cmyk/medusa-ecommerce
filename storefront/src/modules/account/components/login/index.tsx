@@ -15,15 +15,17 @@ const Login = ({ setCurrentView }: Props) => {
 
   return (
     <div
-      className="max-w-sm w-full flex flex-col items-center"
+      className="flex flex-col items-center w-full max-w-sm"
       data-testid="login-page"
     >
-      <h1 className="text-2xl font-semibold uppercase mb-6 text-foreground">Welcome back</h1>
-      <p className="text-center text-base text-muted-foreground mb-8">
+      <h1 className="mb-6 text-2xl font-semibold uppercase text-foreground">
+        Welcome back
+      </h1>
+      <p className="mb-8 text-base text-center text-muted-foreground">
         Sign in to access an enhanced shopping experience.
       </p>
       <form className="w-full" action={formAction}>
-        <div className="flex flex-col w-full gap-y-2">
+        <div className="flex flex-col gap-y-2 w-full">
           <Input
             label="Email"
             name="email"
@@ -43,15 +45,15 @@ const Login = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
-        <SubmitButton data-testid="sign-in-button" className="w-full mt-6">
+        <SubmitButton data-testid="sign-in-button" className="mt-6 w-full">
           Sign in
         </SubmitButton>
       </form>
-      <div className="text-center text-muted-foreground text-sm mt-6">
+      <div className="mt-6 text-sm text-center text-muted-foreground">
         Not a member?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          className="underline text-foreground hover:text-foreground/80 transition-colors"
+          className="underline transition-colors text-foreground hover:text-foreground/80"
           data-testid="register-button"
         >
           Join us
