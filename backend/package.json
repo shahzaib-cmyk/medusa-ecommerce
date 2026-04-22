@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@agilo/medusa-analytics-plugin": "^1.4.0",
+    "@codee-sh/medusa-plugin-automations": "^1.0.11",
     "@medusajs/admin-sdk": "2.13.6",
     "@medusajs/admin-shared": "2.13.6",
     "@medusajs/cli": "2.13.6",

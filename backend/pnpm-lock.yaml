@@ -15,6 +15,9 @@ importers:
       '@agilo/medusa-analytics-plugin':
         specifier: ^1.4.0
         version: 1.4.0(@medusajs/admin-sdk@2.13.6)(@medusajs/framework@2.13.6(@medusajs/cli@2.13.6(@types/node@20.19.25))(@types/node@20.19.25)(ioredis@5.8.2)(vite@5.4.21(@types/node@20.19.25))(zod@3.25.76))(@medusajs/icons@2.13.6(react@18.3.1))(@medusajs/medusa@2.13.6)(@medusajs/ui@4.1.6(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3))(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(redux@5.0.1)
+      '@codee-sh/medusa-plugin-automations':
+        specifier: ^1.0.11
+        version: 1.0.11
       '@medusajs/admin-sdk':
         specifier: 2.13.6
         version: 2.13.6
@@ -629,6 +632,10 @@ packages:
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+
+  '@codee-sh/medusa-plugin-automations@1.0.11':
+    resolution: {integrity: sha512-vfzNfoJqhPFovh+U69Rj1kagFGD/qK5Py+j9fuj7+Q2PCzrzNb2i/Y8lJQu/WbvKCQg5mdi0Jxyi/oKpomCl8A==}
+    engines: {node: '>=20'}
 
   '@colors/colors@1.6.0':
     resolution: {integrity: sha512-Ir+AOibqzrIsL6ajt3Rz3LskB7OiMVHqltZmspbW/TJuTVuyOMirVqAkjfY6JISiLHgyNqicAC8AyHHGzNd/dA==}
@@ -9587,6 +9594,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.28.5
 
   '@bcoe/v8-coverage@0.2.3': {}
+
+  '@codee-sh/medusa-plugin-automations@1.0.11': {}
 
   '@colors/colors@1.6.0': {}
 
