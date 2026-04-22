@@ -140,6 +140,15 @@ const medusaConfig = {
     options: {},
   },
   "@codee-sh/medusa-plugin-automations",
+  {
+      resolve: "@codee-sh/medusa-plugin-notification-emails",
+      options: {
+        customTranslations: {},
+        extend: {
+          services: [],
+        },
+      },
+    },
   ...(MEILISEARCH_HOST && MEILISEARCH_ADMIN_KEY ? [{
       resolve: '@rokmohar/medusa-plugin-meilisearch',
       options: {
